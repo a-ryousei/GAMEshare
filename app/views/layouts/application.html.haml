@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title GAMEshare
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+
+    .Back
+    .Back__header
+      .Back__header__bar
+        .Back__header__bar__left
+          =link_to root_path, class: "top-icon" do
+            GAME_s
+        .Back__header__bar__center
+          .Back__header__bar__center__form
+            = form_with url: "#", local: true, class: "search-form" do |f|
+              = f.text_field :keyword, placeholder: "検索する", class: "search-input"
+              = f.submit "検索", class: "search-btn"
+        .Back__header__bar__right
+          .Back__header__bar__right__icon
+            =link_to "#",class: "post" do
+              投稿する
+            =link_to "#", class: "icon" do
+              = icon('fas', 'cog')
+            =link_to "#",method: :delete, class: "icon" do
+              = icon('fas', 'sign-out-alt')
+    = yield
